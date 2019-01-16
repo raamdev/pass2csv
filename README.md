@@ -25,12 +25,40 @@ The path you provide to this script should be a directory that contains `.gpg` f
 
 ## Examples
 
-Example command for turning the export CSV file into a 1Password 1PIF file using the `convert_to_1p4` utility:
+This script requires one argument: a directory that contains `.gpg` files.
+
+Example: `pass2csv.sh ~.password-store/Logins`
+
+
+**Generating the CSV file:**
+
+```
+$ ./pass2csv.sh ~/.password-store/Logins
+
+Finding .gpg files in ~/.password-store/Logins/...
+
+Processing ~/.password-store/Logins/example@gmail.com.gpg file...
+Processing ~/.password-store/Logins/Apple_iCloud.gpg file...
+
+Done!
+Password data exported to ~/Projects/pass2csv/export_1547659404.csv
+```
+
+**Example of exported data:**
+
+```
+$ cat export_1547659404.csv
+
+"title","login password","login username","notes","modified"
+"example@gmail.com","8rHmfXdummy_password","example@gmail.com","
+Notes about example@gmail.com","1434410624"
+"Apple iCloud","tj84RmDummyPassword","example","Some notes about iCloud account","1415934145"
+```
+
+**Converting CSV file to 1PIF format for import to 1Password:**
+
+Example command for turning the export CSV file into a 1Password 1PIF file using the [`convert_to_1p4` utility](https://discussions.agilebits.com/discussion/30286/mrcs-convert-to-1password-utility):
 
 ```
 /usr/bin/perl convert_to_1p4.pl csv '~/Projects/pass2csv/export_1547584081.csv' -v -t Example,Tags,Here
 ```
-
-This script requires one argument: a directory that contains `.gpg` files.
-
-Example: `pass2csv.sh ~.password-store/Logins`
